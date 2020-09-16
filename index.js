@@ -39,9 +39,56 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
-
+function Person(name, age) {
+  this.name = name,
+  this.age = age,
+  this.stomach = [];
 }
+
+Person.prototype.eat = function(edible){ 
+    
+    if(this.stomach.length < 10){
+      this.stomach.push(edible);
+    }
+}
+
+Person.prototype.poop = function(){
+   this.stomach = [];
+}
+
+Person.prototype.toString = function(){
+  return `${this.name}, ${this.age}`
+}
+
+const person1 = new Person('Pedro', 19);
+const person2 = new Person('Matias', 28);
+const person3 = new Person('Lebron', 35);
+
+console.log(person1.toString());
+console.log(person2.toString());
+console.log(person3.toString());
+
+
+person1.eat('steak');
+person2.eat('Muffin');
+person3.eat('Apple');
+
+console.log(person1.stomach);
+console.log(person2.stomach);
+console.log(person3.stomach);
+
+
+person1.poop();
+person2.poop();
+person3.poop();
+
+
+console.log(person1.stomach);
+console.log(person2.stomach);
+console.log(person3.stomach);
+
+
+
 
 /*
   TASK 2
@@ -57,9 +104,19 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-
+function Car(model, milesPerGallon) {
+  this.model = model
+  this.milesPerGallon = milesPerGallon
+  this.tank = [0]
+  this.odometer = [0]
 }
+
+Car.prototype.fill = function(gallons){
+  this.tank.push(gallons);
+}
+
+
+
 
 /*
   TASK 3
@@ -72,14 +129,30 @@ function Baby() {
 
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* 
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. Window/Global Object Binding = if you use 'this' w/o giving it context, it defaults to the window unless you're in strict mode and will return undefined.
+  2. Implicit Binding = when you call a function, and there is an object and
+  3. Explicit Binding = 
+  4. New Binding = 
 */
 
 
