@@ -104,17 +104,38 @@ console.log(person3.stomach);
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car(model, milesPerGallon) {
-  this.model = model
-  this.milesPerGallon = milesPerGallon
-  this.tank = [0]
-  this.odometer = [0]
+function Car (model, milesPerGallon) {
+  this.model = model,
+  this.milesPerGallon = milesPerGallon,
+  this.tank = 0;
+  this.odometer = 0;
 }
 
 Car.prototype.fill = function(gallons){
-  this.tank.push(gallons);
+  this.tank += gallons;
+}
+Car.prototype.drive = function(distance) {
+  this.totalMiles = this.milesPerGallon * this.tank;
+  this.odometer += distance;
+  this.milesLeft = this.totalMiles - distance;
+
+  if (this.odometer >= this.totalMiles){
+    console.log(`I ran out of fuel at ${this.odometer} miles!`)
+    return this.tank = 0, this.milesLeft = 0, this.odometer = this.totalMiles;
+  }
+  else {
+    return (this.tank = this.tank - (this.odometer / this.milesPerGallon))
+  }
+  
 }
 
+const car1 = new Car('Lambo', 20);
+
+car1.fill(10);
+console.log(car1);
+
+car1.drive(201);
+console.log(car1);
 
 
 
@@ -125,24 +146,12 @@ Car.prototype.fill = function(gallons){
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
+function Baby(name, age, favoriteToy) {
 
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+// const baby1 = new Baby('Tom', 1, ball)
 
 
 /* 
